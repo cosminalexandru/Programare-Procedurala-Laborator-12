@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 char *prefixMaxim(int n, ...) {
     char *sir, *common = NULL;
@@ -127,6 +128,24 @@ void inlocuire(const void *vector, const void *x, const void *y, int nrElementeV
         if (cmp(a, x) == 0)
             memcpy(a, y, dimensiune);
     }
+}
+
+int max(int a, int b) {
+    int max = a > b ? a : b;
+    return max;
+}
+
+int findMinRec(int vector[], int n) {
+    if (n == 1)
+        return vector[0];
+    return max(vector[n - 1], findMinRec(vector, n - 1));
+}
+
+int rev(int n, int temp) {
+    if (n == 0)
+        return temp;
+    temp = (temp * 10) + (n % 10);
+    return rev(n / 10, temp);
 }
 
 int main() {
